@@ -1,167 +1,203 @@
-class SimpleScrollSlider {
-    constructor() {
-        this.slides = document.querySelectorAll('.slide');
-        this.dots = document.querySelectorAll('.dot');
-        this.currentSlide = 0;
-        this.isScrolling = false;
-        this.scrollDelay = 1000; // Wait 1 second between scrolls
-        
-        this.init();
-    }
-    
-    init() {
-        // Show first slide
-        this.showSlide(0);
-        
-        // Add scroll event
-        this.addScrollEvent();
-        
-        // Add dot click events
-        this.addDotEvents();
-        
-        // Add intersection observer for automatic activation
-        this.addIntersectionObserver();
-    }
-    
-    addScrollEvent() {
-        window.addEventListener('wheel', (e) => {
-            if (this.isScrolling) return;
-            
-            if (e.deltaY > 0) {
-                // Scrolling down
-                this.nextSlide();
-            } else {
-                // Scrolling up
-                this.previousSlide();
-            }
-        }, { passive: true });
-        
-        // Touch events for mobile
-        let touchStartY = 0;
-        
-        window.addEventListener('touchstart', (e) => {
-            touchStartY = e.touches[0].clientY;
-        }, { passive: true });
-        
-        window.addEventListener('touchend', (e) => {
-            const touchEndY = e.changedTouches[0].clientY;
-            const diff = touchStartY - touchEndY;
-            
-            if (Math.abs(diff) > 50) {
-                if (diff > 0 && !this.isScrolling) {
-                    this.nextSlide();
-                } else if (diff < 0 && !this.isScrolling) {
-                    this.previousSlide();
-                }
-            }
-        }, { passive: true });
-    }
-    
-    addIntersectionObserver() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const slideIndex = Array.from(this.slides).indexOf(entry.target);
-                    if (slideIndex !== -1 && slideIndex !== this.currentSlide) {
-                        this.showSlide(slideIndex);
-                    }
-                }
-            });
-        }, {
-            threshold: 0.5,
-            rootMargin: '-25% 0px -25% 0px' // Trigger when 50% of slide is visible
-        });
-        
-        this.slides.forEach(slide => observer.observe(slide));
-    }
-    
-    addDotEvents() {
-        this.dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                this.goToSlide(index);
-            });
-        });
-    }
-    
-    nextSlide() {
-        if (this.currentSlide < this.slides.length - 1) {
-            this.goToSlide(this.currentSlide + 1);
-        }
-    }
-    
-    previousSlide() {
-        if (this.currentSlide > 0) {
-            this.goToSlide(this.currentSlide - 1);
-        }
-    }
-    
-    goToSlide(index) {
-        if (this.isScrolling) return;
-        
-        this.isScrolling = true;
-        
-        // Scroll to the slide
-        this.slides[index].scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-        
-        // Update active states
-        this.showSlide(index);
-        
-        // Reset scrolling lock after delay
-        setTimeout(() => {
-            this.isScrolling = false;
-        }, this.scrollDelay);
-    }
-    
-    showSlide(index) {
-        // Update slides
-        this.slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
-        });
-        
-        // Update dots
-        this.dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-        });
-        
-        this.currentSlide = index;
-    }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTH Construction | Building Dreams</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">BTH<span>Construction</span></div>
+            <button class="mobile-menu-btn">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new SimpleScrollSlider();
-    
-    // Mobile menu toggle
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('nav ul');
-    
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-    }
-    
-    // Close mobile menu when clicking on links
-    document.querySelectorAll('nav a').forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-        });
-    });
-});
+    <!-- PowerPoint-Style Zoom Experience -->
+    <main class="slideshow-container">
+        <!-- Slide 1: Complete Building -->
+        <section class="slide active" id="slide1" data-slide="1">
+            <div class="slide-background building-main">
+                <div class="slide-overlay"></div>
+            </div>
+            <div class="slide-content">
+                <div class="container">
+                    <h1 class="slide-title">Building Dreams into Reality</h1>
+                    <p class="slide-subtitle">Scroll to explore our construction philosophy</p>
+                    <div class="scroll-indicator">
+                        <div class="arrow">↓</div>
+                        <span>Scroll to begin</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-// Add smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
+        <!-- Slide 2: Design Phase -->
+        <section class="slide" id="slide2" data-slide="2">
+            <div class="slide-background design-phase">
+                <div class="slide-overlay"></div>
+                <div class="blueprint-overlay"></div>
+            </div>
+            <div class="slide-content">
+                <div class="container">
+                    <div class="text-reveal">
+                        <h2 class="reveal-title">Designing with Passion</h2>
+                        <div class="reveal-subtitle">Every great building begins with visionary design</div>
+                        <div class="design-elements">
+                            <div class="design-element">
+                                <div class="element-icon">📐</div>
+                                <span>Precision Planning</span>
+                            </div>
+                            <div class="design-element">
+                                <div class="element-icon">🎨</div>
+                                <span>Creative Vision</span>
+                            </div>
+                            <div class="design-element">
+                                <div class="element-icon">💡</div>
+                                <span>Innovative Solutions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Foundations -->
+        <section class="slide" id="slide3" data-slide="3">
+            <div class="slide-background foundations-closeup">
+                <div class="slide-overlay"></div>
+                <div class="foundation-highlight"></div>
+            </div>
+            <div class="slide-content">
+                <div class="container">
+                    <div class="text-reveal">
+                        <h2 class="reveal-title">Built on Strong Foundations</h2>
+                        <div class="reveal-subtitle">The principles of our company are strong trust foundations</div>
+                        <div class="foundation-features">
+                            <div class="feature">
+                                <div class="feature-number">01</div>
+                                <h3>Integrity</h3>
+                                <p>Honest communication and transparent processes</p>
+                            </div>
+                            <div class="feature">
+                                <div class="feature-number">02</div>
+                                <h3>Reliability</h3>
+                                <p>Consistent quality and dependable service</p>
+                            </div>
+                            <div class="feature">
+                                <div class="feature-number">03</div>
+                                <h3>Trust</h3>
+                                <p>Building relationships that last generations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Balcony Details -->
+        <section class="slide" id="slide4" data-slide="4">
+            <div class="slide-background balcony-detail">
+                <div class="slide-overlay"></div>
+                <div class="detail-highlight"></div>
+            </div>
+            <div class="slide-content">
+                <div class="container">
+                    <div class="text-reveal">
+                        <h2 class="reveal-title">Exemplary Focus on Detail</h2>
+                        <div class="reveal-subtitle">Where precision meets perfection in every element</div>
+                        <div class="detail-stats">
+                            <div class="stat">
+                                <div class="stat-number">99%</div>
+                                <div class="stat-label">Quality Satisfaction</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">5mm</div>
+                                <div class="stat-label">Tolerance Precision</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">Quality Control</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Call to Action -->
+        <section class="slide" id="slide5" data-slide="5">
+            <div class="slide-background construction-site">
+                <div class="slide-overlay"></div>
+            </div>
+            <div class="slide-content">
+                <div class="container">
+                    <div class="cta-content">
+                        <h2>Ready to Build Your Vision?</h2>
+                        <p>From initial design to final details, we're with you every step of the way.</p>
+                        <div class="cta-buttons">
+                            <a href="projects.html" class="btn btn-primary">View Our Projects</a>
+                            <a href="contact.html" class="btn btn-secondary">Start Your Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Progress Indicator -->
+    <div class="slide-progress">
+        <div class="progress-dots">
+            <div class="dot active" data-slide="1"></div>
+            <div class="dot" data-slide="2"></div>
+            <div class="dot" data-slide="3"></div>
+            <div class="dot" data-slide="4"></div>
+            <div class="dot" data-slide="5"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>BTH Construction</h3>
+                    <p>Building your dreams with precision and passion since 2008.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>📍 123 Construction Ave, Building City</li>
+                        <li>📞 (555) 123-4567</li>
+                        <li>✉️ info@bthconstruction.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 BTH Construction. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

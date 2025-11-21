@@ -1,3 +1,49 @@
+/* Add these specific background image classes to your CSS */
+
+/* Slide 1: Complete Building */
+.building-main {
+    background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+}
+
+/* Slide 2: Design Phase */
+.design-phase {
+    background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+}
+
+/* Slide 3: Foundations Close-up */
+.foundations-closeup {
+    background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+}
+
+/* Slide 4: Balcony Detail */
+.balcony-detail {
+    background-image: url('https://images.unsplash.com/photo-1613493590736-6a5c38f34b12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+}
+
+/* Slide 5: Construction Site */
+.construction-site {
+    background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+}
+
+/* Add foundation highlight effect */
+.foundation-highlight {
+    position: absolute;
+    top: 60%;
+    left: 30%;
+    width: 200px;
+    height: 100px;
+    border: 3px solid var(--secondary);
+    transform: translate(-50%, -50%) scale(0);
+    box-shadow: 0 0 50px rgba(231, 76, 60, 0.5);
+    transition: all 1s ease 1s;
+    z-index: 1;
+}
+
+.slide.active .foundation-highlight {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Rest of your existing CSS remains the same */
 /* Reset and Base Styles */
 * {
     margin: 0;
