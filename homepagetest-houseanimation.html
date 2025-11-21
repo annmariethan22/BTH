@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ΟΙΚΟΔΟΜΙΚΗ - Χτίζοντας Ονείρων</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Helvetica Neue', sans-serif;
+        }
+
+        :root {
+            --cream: #F8F5F0;
+            --light-beige: #EFEAE2;
+            --taupe: #D8CFC0;
+            --soft-brown: #B8A897;
+            --dark-brown: #8B7D6D;
+            --charcoal: #3C3B37;
+            --accent: #A9927E;
+            --roof-color: #9C8475;
+            --window-blue: #D4E8F7;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--light-beige) 100%);
+            color: var(--charcoal);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(248, 245, 240, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(139, 125, 109, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            color: var(--charcoal);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--dark-brown);
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.8s forwards;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 2.5rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 1.1s forwards;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.8s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(169, 146, 126, 0.4);
+        }
+
+        .cta-button:hover:before {
+            left: 100%;
+        }
+
+        /* Construction Animation Section */
+        .construction-section {
+            min-height: 180vh; /* Μείωσα το ύψος */
+            position: relative;
+            padding: 8rem 0 4rem; /* Προσέθεσα padding στο κάτω μέρος */
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5rem;
+            color: var(--charcoal);
+        }
+
+        .construction-container {
+            position: sticky;
+            top: 15vh;
+            height: 70vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            height: 100%;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                var(--accent) 10%, 
+                var(--accent) 90%, 
+                transparent 100%);
+        }
+
+        .timeline-steps {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 4rem 0;
+        }
+
+        .timeline-step {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid transparent;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateX(-60px) scale(0.95);
+            margin-bottom: 2.5rem;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-step.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            border-left-color: var(--accent);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-step:nth-child(1) { transition-delay: 0.1s; }
+        .timeline-step:nth-child(2) { transition-delay: 0.3s; }
+        .timeline-step:nth-child(3) { transition-delay: 0.5s; }
+        .timeline-step:nth-child(4) { transition-delay: 0.7s; }
+
+        .step-number {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-step h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--charcoal);
+        }
+
+        .timeline-step p {
+            color: var(--dark-brown);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* House Animation - Improved */
+        .house-animation {
+            position: relative;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .simple-house {
+            position: relative;
+            width: 320px;
+            height: 280px;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
+        }
+
+        .house-part {
+            position: absolute;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .house-part.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Foundation */
+        .foundation {
+            bottom: 0;
+            width: 280px;
+            height: 25px;
+            background: linear-gradient(135deg, #7A6C5D, #8B7D6D);
+            border-radius: 8px 8px 4px 4px;
+            left: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Walls */
+        .walls {
+            bottom: 25px;
+            width: 240px;
+            height: 170px;
+            background: linear-gradient(135deg, #E8DFD2, #D8CFC0);
+            border: 3px solid var(--soft-brown);
+            border-bottom: none;
+            left: 40px;
+            border-radius: 12px 12px 0 0;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Roof */
+        .roof {
+            bottom: 195px;
+            width: 280px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--roof-color), #8B7D6D);
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            left: 20px;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Door */
+        .door {
+            bottom: 25px;
+            left: 135px;
+            width: 55px;
+            height: 110px;
+            background: linear-gradient(135deg, #7A6C5D, #5D5246);
+            border: 3px solid #5D5246;
+            border-radius: 8px 8px 0 0;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .door-handle {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* Windows */
+        .window {
+            position: absolute;
+            width: 45px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--window-blue), #B3D9FF);
+            border: 3px solid #7A6C5D;
+            border-radius: 8px;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .window:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        .window:after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.5);
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+
+        .window-left {
+            bottom: 80px;
+            left: 65px;
+        }
+
+        .window-right {
+            bottom: 80px;
+            right: 65px;
+        }
+
+        /* Spacer Section - Προσθέτω κενό μεταξύ animation και CTA */
+        .spacer-section {
+            height: 40vh;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--light-beige) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .spacer-content h3 {
+            font-size: 2rem;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .spacer-content p {
+            font-size: 1.2rem;
+            color: var(--dark-brown);
+            max-width: 600px;
+        }
+
+        /* Final CTA - Μετακίνησα πιο κάτω */
+        .final-cta {
+            padding: 6rem 2rem 8rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--light-beige) 0%, var(--cream) 100%);
+            position: relative;
+        }
+
+        .final-cta:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .final-cta h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--charcoal);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .final-cta p {
+            font-size: 1.2rem;
+            color: var(--dark-brown);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease 0.2s;
+        }
+
+        .final-cta.visible h2,
+        .final-cta.visible p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animated-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.3rem 3rem;
+            background: linear-gradient(135deg, var(--accent), var(--soft-brown));
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s ease 0.4s;
+            box-shadow: 0 15px 35px rgba(169, 146, 126, 0.3);
+        }
+
+        .final-cta.visible .animated-cta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animated-cta:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.8s;
+        }
+
+        .animated-cta:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(169, 146, 126, 0.4);
+        }
+
+        .animated-cta:hover:before {
+            left: 100%;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .pulse-dot:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--cream);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            color: var(--taupe);
+            font-size: 1.3rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: var(--light-beige);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--taupe);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 200, 181, 0.2);
+            color: var(--taupe);
+            font-size: 0.9rem;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: var(--cream);
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(3);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .construction-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .timeline {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .construction-section {
+                min-height: 150vh;
+            }
+
+            .spacer-section {
+                height: 30vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .construction-section {
+                min-height: 120vh;
+                padding: 6rem 0 3rem;
+            }
+
+            .spacer-section {
+                height: 25vh;
+                padding: 0 1rem;
+            }
+
+            .spacer-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .spacer-content p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">ΟΙΚΟΔΟΜΙΚΗ</div>
+            <ul class="nav-links">
+                <li><a href="#home">Αρχική</a></li>
+                <li><a href="#services">Υπηρεσίες</a></li>
+                <li><a href="#projects">Έργα</a></li>
+                <li><a href="#construction">Διαδικασία</a></li>
+                <li><a href="#contact">Επικοινωνία</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Χτίζουμε Ονείρων με Βάση την Εμπειρία</h1>
+            <p>40 χρόνια δημιουργώντας σπίτια που ξεπερνούν τις προσδοκίες. Αξιοπριστία, ποιότητα και προσοχή στη λεπτομέρεια.</p>
+            <a href="#construction" class="cta-button">
+                <span>Ανακαλύψτε τη Διαδικασία</span>
+                <i class="fas fa-arrow-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <h2 class="section-title">Οι Υπηρεσίες μας</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-home"></i>
+                <h3>Κατοικίες</h3>
+                <p>Προσαρμοσμένες λύσεις για το σπίτι των ονείρων σας</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-building"></i>
+                <h3>Πολυκατοικίες</h3>
+                <p>Σύγχρονες πολυκατοικίες με έμφαση στην ποιότητα ζωής</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-tools"></i>
+                <h3>Ανακαινίσεις</h3>
+                <p>Συνολικές ανακαινίσεις και βελτιώσεις ακινήτων</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Construction Animation Section -->
+    <section class="construction-section" id="construction">
+        <h2 class="section-title">Η Διαδικασία Κατασκευής μας</h2>
+        <div class="construction-container">
+            <!-- Timeline -->
+            <div class="timeline">
+                <div class="timeline-line"></div>
+                <div class="timeline-steps">
+                    <div class="timeline-step" data-step="1">
+                        <div class="step-number">Βήμα 1</div>
+                        <h3>Στιβαρά Θεμέλια</h3>
+                        <p>40 χρόνια εμπειρίας και αξιοπιστίας που στηρίζουν κάθε έργο μας</p>
+                    </div>
+                    <div class="timeline-step" data-step="2">
+                        <div class="step-number">Βήμα 2</div>
+                        <h3>Γερά Υλικά</h3>
+                        <p>Χωρίς εκπτώσεις στην ποιότητα - μόνο τα καλύτερα υλικά</p>
+                    </div>
+                    <div class="timeline-step" data-step="3">
+                        <div class="step-number">Βήμα 3</div>
+                        <h3>Κατασκευή & Δομή</h3>
+                        <p>Σταθερότητα και ασφάλεια σε κάθε επίπεδο κατασκευής</p>
+                    </div>
+                    <div class="timeline-step" data-step="4">
+                        <div class="step-number">Βήμα 4</div>
+                        <h3>Ολοκλήρωση & Λεπτομέρειες</h3>
+                        <p>Προσοχή σε κάθε λεπτομέρεια για το τελικό αποτέλεσμα</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- House Animation -->
+            <div class="house-animation">
+                <div class="simple-house">
+                    <div class="house-part foundation" id="part-foundation"></div>
+                    <div class="house-part walls" id="part-walls"></div>
+                    <div class="house-part roof" id="part-roof"></div>
+                    <div class="house-part door" id="part-door">
+                        <div class="door-handle"></div>
+                    </div>
+                    <div class="house-part window window-left" id="part-window-left"></div>
+                    <div class="house-part window window-right" id="part-window-right"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spacer Section - Νέο section για απόσταση -->
+    <section class="spacer-section">
+        <div class="spacer-content">
+            <h3>Το Σπίτι των Ονείρων σας Περιμένει</h3>
+            <p>Από την πρώτη στιγμή μέχρι την τελική παράδοση, είμαστε δίπλα σας</p>
+        </div>
+    </section>
+
+    <!-- Final CTA - Τώρα είναι πολύ πιο κάτω -->
+    <section class="final-cta" id="contact">
+        <h2>Ξεκινήστε το Ταξίδι του Ονείρου σας</h2>
+        <p>Εμπιστευτείτε στην εμπειρία μας και αφήστε μας να μετατρέψουμε το όνειρό σας σε πραγματικότητα. 40 χρόνια δημιουργούμε σπίτια με ψυχή.</p>
+        <a href="#contact" class="animated-cta">
+            <div class="pulse-dot"></div>
+            <span>Ζητήστε Προσφορά</span>
+            <i class="fas fa-arrow-right"></i>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Επικοινωνία</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Οδός Παράδειγμα 123, Χολαργός</li>
+                    <li><i class="fas fa-phone"></i> 210 123 4567</li>
+                    <li><i class="fas fa-envelope"></i> info@oikodomiki.gr</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Υπηρεσίες</h3>
+                <ul>
+                    <li><a href="#services">Κατοικίες</a></li>
+                    <li><a href="#services">Πολυκατοικίες</a></li>
+                    <li><a href="#services">Ανακαινίσεις</a></li>
+                    <li><a href="#services">Αρχιτεκτονικός Σχεδιασμός</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Περισσότερα</h3>
+                <ul>
+                    <li><a href="#projects">Τα Έργα μας</a></li>
+                    <li><a href="#construction">Η Διαδικασία μας</a></li>
+                    <li><a href="#contact">Επικοινωνία</a></li>
+                    <li><a href="#home">Αρχική</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 ΟΙΚΟΔΟΜΙΚΗ. Με επιφύλαξη παντός δικαιώματος. | ΑΦΜ: 123456789 | ΔΟΥ: Χολαργού</p>
+        </div>
+    </footer>
+
+    <script>
+        class ConstructionAnimation {
+            constructor() {
+                this.steps = document.querySelectorAll('.timeline-step');
+                this.houseParts = document.querySelectorAll('.house-part');
+                this.finalCta = document.querySelector('.final-cta');
+                this.currentStep = 0;
+                this.totalSteps = 4;
+                
+                this.init();
+            }
+            
+            init() {
+                this.createScrollObserver();
+                this.createCtaObserver();
+                // Activate first step initially
+                setTimeout(() => {
+                    this.activateStep(1);
+                }, 1000);
+            }
+            
+            createScrollObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const step = parseInt(entry.target.dataset.step);
+                            this.activateStep(step);
+                        }
+                    });
+                }, {
+                    threshold: 0.7,
+                    rootMargin: '-10% 0% -10% 0%'
+                });
+                
+                this.steps.forEach(step => observer.observe(step));
+            }
+
+            createCtaObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, {
+                    threshold: 0.3
+                });
+
+                if (this.finalCta) {
+                    observer.observe(this.finalCta);
+                }
+            }
+            
+            activateStep(step) {
+                // Update timeline steps with staggered delays
+                this.steps.forEach(s => {
+                    const stepNum = parseInt(s.dataset.step);
+                    if (stepNum === step) {
+                        setTimeout(() => {
+                            s.classList.add('active');
+                        }, stepNum * 200);
+                    } else if (stepNum < step) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+                
+                // Update house parts with proper sequencing
+                this.houseParts.forEach(part => {
+                    part.classList.remove('active');
+                });
+                
+                setTimeout(() => {
+                    if (step >= 1) {
+                        document.getElementById('part-foundation').classList.add('active');
+                    }
+                    if (step >= 2) {
+                        document.getElementById('part-walls').classList.add('active');
+                    }
+                    if (step >= 3) {
+                        document.getElementById('part-door').classList.add('active');
+                        document.getElementById('part-window-left').classList.add('active');
+                        document.getElementById('part-window-right').classList.add('active');
+                    }
+                    if (step >= 4) {
+                        document.getElementById('part-roof').classList.add('active');
+                    }
+                }, 300);
+                
+                this.currentStep = step;
+            }
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new ConstructionAnimation();
+            
+            // Nav scroll effect
+            window.addEventListener('scroll', () => {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 100) {
+                    nav.style.padding = '1rem 0';
+                    nav.style.background = 'rgba(248, 245, 240, 0.98)';
+                } else {
+                    nav.style.padding = '1.5rem 0';
+                    nav.style.background = 'rgba(248, 245, 240, 0.95)';
+                }
+            });
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
