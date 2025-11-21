@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTH Construction | Quality Building Services</title>
+    <title>BTH Construction | Building Dreams</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Navigation -->
     <header>
         <div class="container header-container">
             <div class="logo">BTH<span>Construction</span></div>
@@ -23,65 +23,98 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Hero Section with Building Animation -->
+    <section class="hero" id="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>Building Your Dreams With Quality & Precision</h1>
-                <p>BTH Construction delivers exceptional construction services with over 15 years of experience in residential and commercial projects.</p>
-                <a href="contact.html" class="btn">Get a Free Quote</a>
-            </div>
-        </div>
-    </section>
+            <div class="building-container">
+                <!-- Complete Building -->
+                <div class="building complete-building" id="completeBuilding">
+                    <div class="building-base"></div>
+                    <div class="building-body">
+                        <div class="window-row"></div>
+                        <div class="window-row"></div>
+                        <div class="window-row"></div>
+                        <div class="balcony" id="mainBalcony"></div>
+                    </div>
+                    <div class="building-roof"></div>
+                </div>
 
-    <!-- Services Section -->
-    <section class="section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Services</h2>
-                <p>We offer a comprehensive range of construction services to meet all your building needs.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-img">🏠</div>
-                    <div class="service-content">
-                        <h3>Residential Construction</h3>
-                        <p>Custom home building, renovations, and additions tailored to your lifestyle and preferences.</p>
-                    </div>
+                <!-- Architectural Blueprint -->
+                <div class="blueprint hidden" id="blueprint">
+                    <div class="blueprint-lines"></div>
+                    <div class="blueprint-grid"></div>
+                    <div class="blueprint-measurements"></div>
                 </div>
-                <div class="service-card">
-                    <div class="service-img">🏢</div>
-                    <div class="service-content">
-                        <h3>Commercial Construction</h3>
-                        <p>Office buildings, retail spaces, and commercial facilities built to meet business requirements.</p>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-img">🔨</div>
-                    <div class="service-content">
-                        <h3>Renovation & Remodeling</h3>
-                        <p>Transform your existing space with our professional renovation and remodeling services.</p>
+
+                <!-- Hero Text -->
+                <div class="hero-text">
+                    <h1 class="main-title">Building Your Vision</h1>
+                    <div class="animated-text hidden" id="designText">
+                        <h2>Designing with Passion</h2>
+                        <div class="text-underline"></div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="scroll-indicator">
+            <span>Scroll to Explore</span>
+            <div class="arrow">↓</div>
+        </div>
     </section>
 
-    <!-- About Preview Section -->
-    <section class="section about">
+    <!-- Foundations Section -->
+    <section class="foundations-section" id="foundations">
         <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>About BTH Construction</h2>
-                    <p>With over 15 years of experience in the construction industry, BTH Construction has established itself as a trusted name for quality building services.</p>
-                    <p>Our commitment to excellence and customer satisfaction sets us apart in every project we undertake.</p>
-                    <a href="about.html" class="btn">Learn More About Us</a>
-                </div>
-                <div class="about-image">
-                    <div style="height: 400px; background-color: #ddd; display: flex; align-items: center; justify-content: center; color: #777;">
-                        Company Image
+            <div class="foundations-content">
+                <!-- Foundation Visualization -->
+                <div class="foundation-visual">
+                    <div class="ground-level"></div>
+                    <div class="foundation-piles">
+                        <div class="pile" style="--delay: 0s"></div>
+                        <div class="pile" style="--delay: 0.2s"></div>
+                        <div class="pile" style="--delay: 0.4s"></div>
+                        <div class="pile" style="--delay: 0.6s"></div>
+                    </div>
+                    <div class="foundation-text hidden" id="foundationText">
+                        <h2>The principles of our company are strong trust foundations</h2>
+                        <div class="text-underline"></div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Details Section -->
+    <section class="details-section" id="details">
+        <div class="container">
+            <div class="details-content">
+                <!-- Balcony Focus -->
+                <div class="balcony-focus">
+                    <div class="building-facade">
+                        <div class="facade-wall">
+                            <div class="balcony-detail" id="detailBalcony">
+                                <div class="balcony-rail"></div>
+                                <div class="balcony-floor"></div>
+                                <div class="balcony-bracket"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-text hidden" id="detailText">
+                        <h2>Exemplary focus on detail</h2>
+                        <div class="text-underline"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-section">
+        <div class="container">
+            <div class="final-content">
+                <h2>Ready to Build Your Vision?</h2>
+                <p>From initial design to final details, we're with you every step of the way.</p>
+                <a href="contact.html" class="btn">Start Your Project</a>
             </div>
         </div>
     </section>
@@ -92,7 +125,7 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>BTH Construction</h3>
-                    <p>Building your dreams with quality and precision for over 15 years.</p>
+                    <p>Building your dreams with precision and passion.</p>
                 </div>
                 <div class="footer-column">
                     <h3>Quick Links</h3>
@@ -104,17 +137,9 @@
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Services</h3>
-                    <ul>
-                        <li><a href="#">Residential Construction</a></li>
-                        <li><a href="#">Commercial Construction</a></li>
-                        <li><a href="#">Renovation & Remodeling</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
                     <h3>Contact Info</h3>
                     <ul>
-                        <li>📍 123 Construction Ave, Building City</li>
+                        <li>📍 123 Construction Ave</li>
                         <li>📞 (555) 123-4567</li>
                         <li>✉️ info@bthconstruction.com</li>
                     </ul>
