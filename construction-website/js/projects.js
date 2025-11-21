@@ -1,132 +1,203 @@
-// FABULOUS Mobile Menu Toggle
-const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-const navMenu = document.querySelector('nav ul');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTH Construction | Building Dreams</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">BTH<span>Construction</span></div>
+            <button class="mobile-menu-btn">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-if(mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        // Add some sparkle!
-        if(navMenu.classList.contains('active')) {
-            createSparkles(10);
-        }
-    });
-}
+    <!-- PowerPoint-Style Zoom Experience -->
+    <main class="slideshow-container">
+        <!-- Slide 1: Complete Building -->
+        <section class="slide active" id="slide1" data-slide="1">
+            <div class="slide-background building-main">
+                <div class="slide-overlay"></div>
+            </div>
+            <div class="slide-content">
+                <div class="container">
+                    <h1 class="slide-title">Building Dreams into Reality</h1>
+                    <p class="slide-subtitle">Scroll to explore our construction philosophy</p>
+                    <div class="scroll-indicator">
+                        <div class="arrow">↓</div>
+                        <span>Scroll to begin</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-// Create sparkle effects
-function createSparkles(count) {
-    for(let i = 0; i < count; i++) {
-        const sparkle = document.createElement('div');
-        sparkle.innerHTML = '✨';
-        sparkle.style.position = 'fixed';
-        sparkle.style.left = Math.random() * window.innerWidth + 'px';
-        sparkle.style.top = Math.random() * window.innerHeight + 'px';
-        sparkle.style.fontSize = (Math.random() * 20 + 10) + 'px';
-        sparkle.style.zIndex = '9999';
-        sparkle.style.pointerEvents = 'none';
-        sparkle.style.animation = `sparkleFloat ${Math.random() * 2 + 1}s forwards`;
-        
-        document.body.appendChild(sparkle);
-        
-        setTimeout(() => {
-            sparkle.remove();
-        }, 2000);
-    }
-}
+        <!-- Slide 2: Design Phase -->
+        <section class="slide" id="slide2" data-slide="2">
+            <div class="slide-background design-phase">
+                <div class="slide-overlay"></div>
+                <div class="blueprint-overlay"></div>
+            </div>
+            <div class="slide-content">
+                <div class="container">
+                    <div class="text-reveal">
+                        <h2 class="reveal-title">Designing with Passion</h2>
+                        <div class="reveal-subtitle">Every great building begins with visionary design</div>
+                        <div class="design-elements">
+                            <div class="design-element">
+                                <div class="element-icon">📐</div>
+                                <span>Precision Planning</span>
+                            </div>
+                            <div class="design-element">
+                                <div class="element-icon">🎨</div>
+                                <span>Creative Vision</span>
+                            </div>
+                            <div class="design-element">
+                                <div class="element-icon">💡</div>
+                                <span>Innovative Solutions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-// Add sparkle animation to CSS
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes sparkleFloat {
-        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-        100% { transform: translateY(-100px) rotate(180deg); opacity: 0; }
-    }
-`;
-document.head.appendChild(style);
+        <!-- Slide 3: Foundations -->
+        <section class="slide" id="slide3" data-slide="3">
+            <div class="slide-background foundations-closeup">
+                <div class="slide-overlay"></div>
+                <div class="foundation-highlight"></div>
+            </div>
+            <div class="slide-content">
+                <div class="container">
+                    <div class="text-reveal">
+                        <h2 class="reveal-title">Built on Strong Foundations</h2>
+                        <div class="reveal-subtitle">The principles of our company are strong trust foundations</div>
+                        <div class="foundation-features">
+                            <div class="feature">
+                                <div class="feature-number">01</div>
+                                <h3>Integrity</h3>
+                                <p>Honest communication and transparent processes</p>
+                            </div>
+                            <div class="feature">
+                                <div class="feature-number">02</div>
+                                <h3>Reliability</h3>
+                                <p>Consistent quality and dependable service</p>
+                            </div>
+                            <div class="feature">
+                                <div class="feature-number">03</div>
+                                <h3>Trust</h3>
+                                <p>Building relationships that last generations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-// Close mobile menu when clicking on a link
-const navLinks = document.querySelectorAll('nav ul li a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        createSparkles(5);
-    });
-});
+        <!-- Slide 4: Balcony Details -->
+        <section class="slide" id="slide4" data-slide="4">
+            <div class="slide-background balcony-detail">
+                <div class="slide-overlay"></div>
+                <div class="detail-highlight"></div>
+            </div>
+            <div class="slide-content">
+                <div class="container">
+                    <div class="text-reveal">
+                        <h2 class="reveal-title">Exemplary Focus on Detail</h2>
+                        <div class="reveal-subtitle">Where precision meets perfection in every element</div>
+                        <div class="detail-stats">
+                            <div class="stat">
+                                <div class="stat-number">99%</div>
+                                <div class="stat-label">Quality Satisfaction</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">5mm</div>
+                                <div class="stat-label">Tolerance Precision</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">Quality Control</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-// FABULOUS Form Submission
-const contactForm = document.getElementById('contactForm');
-if(contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Create celebration effect
-        createSparkles(20);
-        
-        // Rainbow alert
-        const alertDiv = document.createElement('div');
-        alertDiv.style.cssText = `
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(45deg, var(--rainbow-1), var(--rainbow-2), var(--rainbow-3), var(--rainbow-4), var(--rainbow-5), var(--rainbow-6));
-            padding: 30px 50px;
-            border-radius: 25px;
-            color: white;
-            font-weight: bold;
-            font-size: 1.5rem;
-            text-align: center;
-            box-shadow: 0 0 50px rgba(255, 107, 201, 0.8);
-            z-index: 10000;
-            border: 5px solid white;
-        `;
-        alertDiv.innerHTML = '🌈 YAS QUEEN! Thank you for your message! We\'ll get back to you soon! 💖✨';
-        
-        document.body.appendChild(alertDiv);
-        
-        setTimeout(() => {
-            alertDiv.remove();
-            contactForm.reset();
-        }, 3000);
-    });
-}
+        <!-- Slide 5: Call to Action -->
+        <section class="slide" id="slide5" data-slide="5">
+            <div class="slide-background construction-site">
+                <div class="slide-overlay"></div>
+            </div>
+            <div class="slide-content">
+                <div class="container">
+                    <div class="cta-content">
+                        <h2>Ready to Build Your Vision?</h2>
+                        <p>From initial design to final details, we're with you every step of the way.</p>
+                        <div class="cta-buttons">
+                            <a href="projects.html" class="btn btn-primary">View Our Projects</a>
+                            <a href="contact.html" class="btn btn-secondary">Start Your Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-// Set active navigation link based on current page
-function setActiveNavLink() {
-    const currentPage = window.location.pathname.split('/').pop();
-    const navLinks = document.querySelectorAll('nav a');
-    
-    navLinks.forEach(link => {
-        const linkPage = link.getAttribute('href');
-        if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-}
+    <!-- Progress Indicator -->
+    <div class="slide-progress">
+        <div class="progress-dots">
+            <div class="dot active" data-slide="1"></div>
+            <div class="dot" data-slide="2"></div>
+            <div class="dot" data-slide="3"></div>
+            <div class="dot" data-slide="4"></div>
+            <div class="dot" data-slide="5"></div>
+        </div>
+    </div>
 
-// Add rainbow cursor effect
-document.addEventListener('mousemove', (e) => {
-    if(Math.random() < 0.1) { // 10% chance to create sparkle
-        const sparkle = document.createElement('div');
-        sparkle.innerHTML = '✨';
-        sparkle.style.position = 'fixed';
-        sparkle.style.left = e.pageX + 'px';
-        sparkle.style.top = e.pageY + 'px';
-        sparkle.style.fontSize = '15px';
-        sparkle.style.zIndex = '9999';
-        sparkle.style.pointerEvents = 'none';
-        sparkle.style.animation = `sparkleFloat 1s forwards`;
-        
-        document.body.appendChild(sparkle);
-        
-        setTimeout(() => {
-            sparkle.remove();
-        }, 1000);
-    }
-});
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>BTH Construction</h3>
+                    <p>Building your dreams with precision and passion since 2008.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>📍 123 Construction Ave, Building City</li>
+                        <li>📞 (555) 123-4567</li>
+                        <li>✉️ info@bthconstruction.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 BTH Construction. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-// Add click celebration
-document.addEventListener('click', (e) => {
-    if(e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON' && e.target.type !== 'submit') {
-       
+    <script src="js/script.js"></script>
+</body>
+</html>
