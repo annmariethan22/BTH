@@ -23,101 +23,147 @@
         </div>
     </header>
 
-    <!-- Hero Section with Building Animation -->
-    <section class="hero" id="hero">
-        <div class="container">
-            <div class="building-container">
-                <!-- Complete Building -->
-                <div class="building complete-building" id="completeBuilding">
-                    <div class="building-base"></div>
-                    <div class="building-body">
-                        <div class="window-row"></div>
-                        <div class="window-row"></div>
-                        <div class="window-row"></div>
-                        <div class="balcony" id="mainBalcony"></div>
-                    </div>
-                    <div class="building-roof"></div>
-                </div>
-
-                <!-- Architectural Blueprint -->
-                <div class="blueprint hidden" id="blueprint">
-                    <div class="blueprint-lines"></div>
-                    <div class="blueprint-grid"></div>
-                    <div class="blueprint-measurements"></div>
-                </div>
-
-                <!-- Hero Text -->
-                <div class="hero-text">
-                    <h1 class="main-title">Building Your Vision</h1>
-                    <div class="animated-text hidden" id="designText">
-                        <h2>Designing with Passion</h2>
-                        <div class="text-underline"></div>
+    <!-- PowerPoint-Style Zoom Experience -->
+    <main class="slideshow-container">
+        <!-- Slide 1: Complete Building -->
+        <section class="slide active" id="slide1" data-slide="1">
+            <div class="slide-background" style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                <div class="slide-overlay"></div>
+            </div>
+            <div class="slide-content">
+                <div class="container">
+                    <h1 class="slide-title">Building Dreams into Reality</h1>
+                    <p class="slide-subtitle">Scroll to explore our construction philosophy</p>
+                    <div class="scroll-indicator">
+                        <div class="arrow">↓</div>
+                        <span>Scroll to begin</span>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scroll to Explore</span>
-            <div class="arrow">↓</div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Foundations Section -->
-    <section class="foundations-section" id="foundations">
-        <div class="container">
-            <div class="foundations-content">
-                <!-- Foundation Visualization -->
-                <div class="foundation-visual">
-                    <div class="ground-level"></div>
-                    <div class="foundation-piles">
-                        <div class="pile" style="--delay: 0s"></div>
-                        <div class="pile" style="--delay: 0.2s"></div>
-                        <div class="pile" style="--delay: 0.4s"></div>
-                        <div class="pile" style="--delay: 0.6s"></div>
-                    </div>
-                    <div class="foundation-text hidden" id="foundationText">
-                        <h2>The principles of our company are strong trust foundations</h2>
-                        <div class="text-underline"></div>
-                    </div>
-                </div>
+        <!-- Slide 2: Design Phase -->
+        <section class="slide" id="slide2" data-slide="2">
+            <div class="slide-background" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                <div class="slide-overlay"></div>
+                <div class="blueprint-overlay"></div>
             </div>
-        </div>
-    </section>
-
-    <!-- Details Section -->
-    <section class="details-section" id="details">
-        <div class="container">
-            <div class="details-content">
-                <!-- Balcony Focus -->
-                <div class="balcony-focus">
-                    <div class="building-facade">
-                        <div class="facade-wall">
-                            <div class="balcony-detail" id="detailBalcony">
-                                <div class="balcony-rail"></div>
-                                <div class="balcony-floor"></div>
-                                <div class="balcony-bracket"></div>
+            <div class="slide-content">
+                <div class="container">
+                    <div class="text-reveal">
+                        <h2 class="reveal-title">Designing with Passion</h2>
+                        <div class="reveal-subtitle">Every great building begins with visionary design</div>
+                        <div class="design-elements">
+                            <div class="design-element">
+                                <div class="element-icon">📐</div>
+                                <span>Precision Planning</span>
+                            </div>
+                            <div class="design-element">
+                                <div class="element-icon">🎨</div>
+                                <span>Creative Vision</span>
+                            </div>
+                            <div class="design-element">
+                                <div class="element-icon">💡</div>
+                                <span>Innovative Solutions</span>
                             </div>
                         </div>
                     </div>
-                    <div class="detail-text hidden" id="detailText">
-                        <h2>Exemplary focus on detail</h2>
-                        <div class="text-underline"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Foundations -->
+        <section class="slide" id="slide3" data-slide="3">
+            <div class="slide-background" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                <div class="slide-overlay"></div>
+            </div>
+            <div class="slide-content">
+                <div class="container">
+                    <div class="text-reveal">
+                        <h2 class="reveal-title">Built on Strong Foundations</h2>
+                        <div class="reveal-subtitle">The principles of our company are strong trust foundations</div>
+                        <div class="foundation-features">
+                            <div class="feature">
+                                <div class="feature-number">01</div>
+                                <h3>Integrity</h3>
+                                <p>Honest communication and transparent processes</p>
+                            </div>
+                            <div class="feature">
+                                <div class="feature-number">02</div>
+                                <h3>Reliability</h3>
+                                <p>Consistent quality and dependable service</p>
+                            </div>
+                            <div class="feature">
+                                <div class="feature-number">03</div>
+                                <h3>Trust</h3>
+                                <p>Building relationships that last generations</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Final CTA Section -->
-    <section class="final-section">
-        <div class="container">
-            <div class="final-content">
-                <h2>Ready to Build Your Vision?</h2>
-                <p>From initial design to final details, we're with you every step of the way.</p>
-                <a href="contact.html" class="btn">Start Your Project</a>
+        <!-- Slide 4: Details -->
+        <section class="slide" id="slide4" data-slide="4">
+            <div class="slide-background" style="background-image: url('https://images.unsplash.com/photo-1613493590736-6a5c38f34b12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                <div class="slide-overlay"></div>
+                <div class="detail-highlight"></div>
             </div>
+            <div class="slide-content">
+                <div class="container">
+                    <div class="text-reveal">
+                        <h2 class="reveal-title">Exemplary Focus on Detail</h2>
+                        <div class="reveal-subtitle">Where precision meets perfection in every element</div>
+                        <div class="detail-stats">
+                            <div class="stat">
+                                <div class="stat-number">99%</div>
+                                <div class="stat-label">Quality Satisfaction</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">5mm</div>
+                                <div class="stat-label">Tolerance Precision</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">Quality Control</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Call to Action -->
+        <section class="slide" id="slide5" data-slide="5">
+            <div class="slide-background" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                <div class="slide-overlay"></div>
+            </div>
+            <div class="slide-content">
+                <div class="container">
+                    <div class="cta-content">
+                        <h2>Ready to Build Your Vision?</h2>
+                        <p>From initial design to final details, we're with you every step of the way.</p>
+                        <div class="cta-buttons">
+                            <a href="projects.html" class="btn btn-primary">View Our Projects</a>
+                            <a href="contact.html" class="btn btn-secondary">Start Your Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Progress Indicator -->
+    <div class="slide-progress">
+        <div class="progress-dots">
+            <div class="dot active" data-slide="1"></div>
+            <div class="dot" data-slide="2"></div>
+            <div class="dot" data-slide="3"></div>
+            <div class="dot" data-slide="4"></div>
+            <div class="dot" data-slide="5"></div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -125,7 +171,7 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>BTH Construction</h3>
-                    <p>Building your dreams with precision and passion.</p>
+                    <p>Building your dreams with precision and passion since 2008.</p>
                 </div>
                 <div class="footer-column">
                     <h3>Quick Links</h3>
@@ -139,7 +185,7 @@
                 <div class="footer-column">
                     <h3>Contact Info</h3>
                     <ul>
-                        <li>📍 123 Construction Ave</li>
+                        <li>📍 123 Construction Ave, Building City</li>
                         <li>📞 (555) 123-4567</li>
                         <li>✉️ info@bthconstruction.com</li>
                     </ul>
