@@ -1,10 +1,10 @@
-class PowerPointSlider {
+class SimpleScrollSlider {
     constructor() {
         this.slides = document.querySelectorAll('.slide');
         this.dots = document.querySelectorAll('.dot');
         this.currentSlide = 0;
-        this.isAnimating = false;
-        this.scrollTimeout = null;
+        this.isScrolling = false;
+        this.scrollDelay = 1000; // Wait 1 second between scrolls
         
         this.init();
     }
@@ -19,46 +19,60 @@ class PowerPointSlider {
         // Add dot click events
         this.addDotEvents();
         
-        // Add keyboard navigation
-        this.addKeyboardEvents();
+        // Add intersection observer for automatic activation
+        this.addIntersectionObserver();
     }
     
     addScrollEvent() {
-        let touchStartY = 0;
-        
-        // Mouse wheel
         window.addEventListener('wheel', (e) => {
-            if (this.isAnimating) return;
+            if (this.isScrolling) return;
             
-            clearTimeout(this.scrollTimeout);
-            this.scrollTimeout = setTimeout(() => {
-                if (e.deltaY > 0) {
-                    this.nextSlide();
-                } else {
-                    this.previousSlide();
-                }
-            }, 50);
+            if (e.deltaY > 0) {
+                // Scrolling down
+                this.nextSlide();
+            } else {
+                // Scrolling up
+                this.previousSlide();
+            }
         }, { passive: true });
         
         // Touch events for mobile
+        let touchStartY = 0;
+        
         window.addEventListener('touchstart', (e) => {
             touchStartY = e.touches[0].clientY;
         }, { passive: true });
         
         window.addEventListener('touchend', (e) => {
-            if (this.isAnimating) return;
-            
             const touchEndY = e.changedTouches[0].clientY;
             const diff = touchStartY - touchEndY;
             
             if (Math.abs(diff) > 50) {
-                if (diff > 0) {
+                if (diff > 0 && !this.isScrolling) {
                     this.nextSlide();
-                } else {
+                } else if (diff < 0 && !this.isScrolling) {
                     this.previousSlide();
                 }
             }
         }, { passive: true });
+    }
+    
+    addIntersectionObserver() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const slideIndex = Array.from(this.slides).indexOf(entry.target);
+                    if (slideIndex !== -1 && slideIndex !== this.currentSlide) {
+                        this.showSlide(slideIndex);
+                    }
+                }
+            });
+        }, {
+            threshold: 0.5,
+            rootMargin: '-25% 0px -25% 0px' // Trigger when 50% of slide is visible
+        });
+        
+        this.slides.forEach(slide => observer.observe(slide));
     }
     
     addDotEvents() {
@@ -66,32 +80,6 @@ class PowerPointSlider {
             dot.addEventListener('click', () => {
                 this.goToSlide(index);
             });
-        });
-    }
-    
-    addKeyboardEvents() {
-        document.addEventListener('keydown', (e) => {
-            if (this.isAnimating) return;
-            
-            switch(e.key) {
-                case 'ArrowDown':
-                case ' ':
-                    e.preventDefault();
-                    this.nextSlide();
-                    break;
-                case 'ArrowUp':
-                    e.preventDefault();
-                    this.previousSlide();
-                    break;
-                case 'Home':
-                    e.preventDefault();
-                    this.goToSlide(0);
-                    break;
-                case 'End':
-                    e.preventDefault();
-                    this.goToSlide(this.slides.length - 1);
-                    break;
-            }
         });
     }
     
@@ -108,47 +96,43 @@ class PowerPointSlider {
     }
     
     goToSlide(index) {
-        if (this.isAnimating || index === this.currentSlide) return;
+        if (this.isScrolling) return;
         
-        this.isAnimating = true;
+        this.isScrolling = true;
         
-        // Hide current slide
-        this.slides[this.currentSlide].classList.remove('active');
-        this.dots[this.currentSlide].classList.remove('active');
+        // Scroll to the slide
+        this.slides[index].scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
         
-        // Show new slide
-        this.currentSlide = index;
-        this.slides[this.currentSlide].classList.add('active');
-        this.dots[this.currentSlide].classList.add('active');
+        // Update active states
+        this.showSlide(index);
         
-        // Reset animation lock
+        // Reset scrolling lock after delay
         setTimeout(() => {
-            this.isAnimating = false;
-        }, 1200);
-        
-        // Update URL hash
-        this.updateURL();
-    }
-    
-    updateURL() {
-        const slideId = this.slides[this.currentSlide].id;
-        history.replaceState(null, null, `#${slideId}`);
+            this.isScrolling = false;
+        }, this.scrollDelay);
     }
     
     showSlide(index) {
+        // Update slides
         this.slides.forEach((slide, i) => {
             slide.classList.toggle('active', i === index);
         });
+        
+        // Update dots
         this.dots.forEach((dot, i) => {
             dot.classList.toggle('active', i === index);
         });
+        
         this.currentSlide = index;
     }
 }
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new PowerPointSlider();
+    new SimpleScrollSlider();
     
     // Mobile menu toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
@@ -168,12 +152,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Parallax effect for background images
-document.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const rate = scrolled * -0.5;
-    
-    document.querySelectorAll('.slide-background').forEach(background => {
-        background.style.transform = `scale(1.1) translateY(${rate * 0.1}px)`;
+// Add smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
     });
 });

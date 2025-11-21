@@ -15,15 +15,14 @@
     --overlay: rgba(44, 62, 80, 0.8);
 }
 
-html, body {
-    height: 100%;
-    overflow: hidden;
-}
+/* REMOVE this line: html, body { height: 100%; overflow: hidden; } */
 
 body {
     line-height: 1.6;
     color: white;
     background: var(--dark);
+    /* Allow scrolling */
+    overflow-x: hidden;
 }
 
 .container {
@@ -88,27 +87,26 @@ nav ul li a.active {
     color: var(--primary);
 }
 
-/* PowerPoint-Style Slideshow */
+/* PowerPoint-Style Slideshow - FIXED SCROLLING */
 .slideshow-container {
-    height: 100vh;
     position: relative;
-    overflow: hidden;
+    /* Remove fixed height, let content determine height */
 }
 
 .slide {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative; /* Change from absolute to relative */
     width: 100%;
-    height: 100%;
+    height: 100vh; /* Each slide takes full viewport height */
     opacity: 0;
-    transform: scale(1.1);
+    transform: translateY(50px);
     transition: all 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+    pointer-events: none;
 }
 
 .slide.active {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
+    pointer-events: all;
 }
 
 .slide-background {
@@ -120,12 +118,7 @@ nav ul li a.active {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    transform: scale(1.1);
-    transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
-}
-
-.slide.active .slide-background {
-    transform: scale(1);
+    background-attachment: fixed; /* Creates parallax effect */
 }
 
 .slide-overlay {
@@ -145,6 +138,7 @@ nav ul li a.active {
     align-items: center;
     justify-content: center;
     text-align: center;
+    z-index: 2;
 }
 
 .slide-title {
@@ -356,6 +350,7 @@ nav ul li a.active {
         linear-gradient(0deg, transparent 49%, rgba(52, 152, 219, 0.3) 49%, rgba(52, 152, 219, 0.3) 51%, transparent 51%);
     opacity: 0;
     transition: opacity 1s ease 0.5s;
+    z-index: 1;
 }
 
 .slide.active .blueprint-overlay {
@@ -372,6 +367,7 @@ nav ul li a.active {
     transform: translate(-50%, -50%) scale(0);
     box-shadow: 0 0 50px rgba(231, 76, 60, 0.5);
     transition: all 1s ease 1s;
+    z-index: 1;
 }
 
 .slide.active .detail-highlight {
@@ -387,6 +383,7 @@ nav ul li a.active {
     text-align: center;
     opacity: 0;
     animation: fadeIn 1s ease 1.5s forwards;
+    z-index: 3;
 }
 
 .arrow {
